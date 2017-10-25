@@ -12,3 +12,7 @@ entropy probs
       = 0.0
     entropy' prob
       = - prob * log2 prob
+
+kraftMcMillanNumber :: [(Char, String)] -> Double
+kraftMcMillanNumber codes
+  = sum (map (\(_, encoded) -> 1.0 / fromIntegral (length encoded)) codes)
