@@ -16,3 +16,7 @@ entropy probs
 kraftMcMillanNumber :: [(Char, String)] -> Double
 kraftMcMillanNumber codes
   = sum (map (\(_, encoded) -> 1.0 / fromIntegral (length encoded)) codes)
+
+averageWordLength :: [(Double, String)] -> Double
+averageWordLength codes
+  = sum (map (\(prob, encoded) -> prob * fromIntegral (length encoded)) codes)
