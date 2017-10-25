@@ -20,3 +20,7 @@ kraftMcMillanNumber codes
 averageWordLength :: [(Double, String)] -> Double
 averageWordLength codes
   = sum (map (\(prob, encoded) -> prob * fromIntegral (length encoded)) codes)
+
+shannonFanoAWL :: [Double] -> Double
+shannonFanoAWL probs
+  = sum (map (\prob -> - prob * fromIntegral (floor (log2 prob))) probs)
