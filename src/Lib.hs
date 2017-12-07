@@ -1,6 +1,8 @@
 module Lib where
 
 import Data.List (sortBy, insertBy)
+import Data.Char (chr)
+import Data.Maybe (fromJust)
 
 -- for convenience
 log2 = logBase 2
@@ -31,6 +33,14 @@ data Tree a b
   = Empty
   | Leaf a b
   | Node (Tree a b) b (Tree a b)
+
+huffmanAWL :: [Double] -> Double
+huffmanAWL probs
+  = sum [findProb symb * fromIntegral (length code) | (symb, code) <- encoded]
+  where
+    codes       = zip (map chr [0..]) probs
+    findProb symb = fromJust (lookup symb codes)
+    encoded     = huffman codes
 
 huffman :: [(Char, Double)] -> [(Char, String)]
 huffman
